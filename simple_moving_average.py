@@ -1,6 +1,3 @@
-# Using  S&P500 data for the assignment. 
-
-#importing required modules
 
 import pandas as pd
 import numpy as np
@@ -38,13 +35,15 @@ equity[['Close','42d','252d']].plot(grid=True,figsize=(8,5))
 #add new column to equity to find the difference 
 equity['42-252'] = equity['42d'] - equity['252d']
     
-#formalise the signals by adding a further column which we will call Postition. We also set our signal threshold ‘X’ to 50
+#formalise the signals by adding a further column which we will call Position. We also set our signal threshold ‘X’ to 50
 
 X = 50
-equity['Postition'] = np.where(equity['42-252'] > X, 1, 0)
-equity['Postition'] = np.where(equity['42-252'] < X, -1, equity['Postition'])
+equity['Position'] = np.where(equity['42-252'] > X, 1, 0)
+equity['Position'] = np.where(equity['42-252'] < X, -1, equity['Position'])
 
-# Below code will show that for the time period we have chosen to backtest, on 2077 trading dates the 42d moving average lies more than 50 points below the 252d moving average, and on 1865 the 42d moving average lies more than 50 points above the 252d moving average.
-equity['Postition'].value_counts()
+# Below code will show that for the time period we have chosen to backtest, on 2125 trading
+# dates the 42d moving average lies more than 50 points below the 252d moving average, 
+#and on 2422 the 42d moving average lies more than 50 points above the 252d moving average.
+equity['Position'].value_counts()
 
 
